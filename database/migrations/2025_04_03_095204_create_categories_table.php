@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('img_Categorie');
             $table->timestamps();
         });
     }
