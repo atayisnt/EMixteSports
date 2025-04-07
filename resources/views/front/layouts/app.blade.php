@@ -8,49 +8,59 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-bg: #f8f9fa;
-            --dark-bg: #2c3e50;
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary-color: #10b981;
+            --accent-color: #f43f5e;
+            --light-bg: #f9fafb;
+            --dark-bg: #1e293b;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --white: #ffffff;
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: var(--light-bg);
+            color: var(--text-primary);
         }
 
         /* Navbar Styling */
         .navbar {
-            background-color: var(--dark-bg);
+            background-color: var(--white);
             padding: 1rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
         .navbar-brand {
             font-size: 1.5rem;
-            font-weight: 600;
-            color: white !important;
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            letter-spacing: -0.5px;
         }
 
         .nav-link {
-            color: rgba(255,255,255,0.8) !important;
+            color: var(--text-primary) !important;
             font-weight: 500;
             padding: 0.5rem 1rem !important;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            border-radius: 8px;
+            margin: 0 0.2rem;
         }
 
         .nav-link:hover {
-            color: white !important;
-            transform: translateY(-1px);
+            color: var(--primary-color) !important;
+            background-color: rgba(99, 102, 241, 0.1);
         }
 
         .nav-link.active {
-            color: white !important;
-            border-bottom: 2px solid var(--secondary-color);
+            color: var(--primary-color) !important;
+            background-color: rgba(99, 102, 241, 0.1);
         }
 
         /* Search Bar */
@@ -60,162 +70,211 @@
         }
 
         .search-input {
-            border-radius: 50px;
-            padding: 0.5rem 1.5rem;
-            border: none;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
         }
 
         .search-button {
-            border-radius: 50px;
-            padding: 0.5rem 1.5rem;
-            background-color: var(--secondary-color);
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
             border: none;
             color: white;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .search-button:hover {
-            background-color: #2980b9;
+            background-color: var(--primary-dark);
             transform: translateY(-1px);
         }
 
         /* Product Cards */
         .product-card {
             border: none;
-            border-radius: 15px;
+            border-radius: 16px;
             transition: all 0.3s ease;
-            background: white;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            background: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+            overflow: hidden;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         .product-card img {
-            border-radius: 15px 15px 0 0;
+            border-radius: 16px 16px 0 0;
             object-fit: cover;
-            height: 200px;
+            height: 220px;
             width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
         }
 
         .product-title {
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .product-price {
-            color: var(--accent-color);
-            font-weight: 600;
-            font-size: 1.2rem;
-        }
-
-        .product-category {
-            color: var(--secondary-color);
-            font-size: 0.9rem;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: var(--dark-bg);
-            color: white;
-            padding: 3rem 0;
-            margin-top: 4rem;
-        }
-
-        .footer h5 {
-            color: var(--secondary-color);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-link {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: block;
+            color: var(--text-primary);
             margin-bottom: 0.5rem;
         }
 
-        .footer-link:hover {
-            color: white;
-            transform: translateX(5px);
-        }
-
-        /* Breadcrumb */
-        .custom-breadcrumb {
-            background-color: transparent;
-            padding: 1rem 0;
-        }
-
-        .breadcrumb-item a {
-            color: var(--secondary-color);
-            text-decoration: none;
-        }
-
-        .breadcrumb-item.active {
+        .product-price {
             color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .product-category {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         /* Buttons */
         .btn-primary {
-            background-color: var(--secondary-color);
+            background-color: var(--primary-color);
             border: none;
-            border-radius: 50px;
-            padding: 0.5rem 1.5rem;
-            transition: all 0.3s ease;
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
         }
 
         .btn-primary:hover {
-            background-color: #2980b9;
+            background-color: var(--primary-dark);
             transform: translateY(-1px);
-        }
-
-        /* Category Pills */
-        .category-pill {
-            background-color: var(--light-bg);
-            color: var(--primary-color);
-            border-radius: 50px;
-            padding: 0.5rem 1.5rem;
-            margin: 0.25rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .category-pill:hover {
-            background-color: var(--secondary-color);
-            color: white;
-            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
         }
 
         /* Stock Badge */
         .stock-badge {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 0.25rem 1rem;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
             border-radius: 50px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 500;
+            z-index: 1;
         }
 
         .stock-badge.in-stock {
-            background-color: #2ecc71;
+            background-color: var(--secondary-color);
             color: white;
         }
 
         .stock-badge.low-stock {
-            background-color: #f1c40f;
+            background-color: #eab308;
             color: white;
         }
 
         .stock-badge.out-of-stock {
             background-color: var(--accent-color);
             color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+            margin-top: 6rem;
+        }
+
+        .footer h5 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-link {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 400;
+        }
+
+        .footer-link:hover {
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        /* Alert Messages */
+        .alert {
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .alert-success {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .alert-danger {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Carousel Customization */
+        .carousel-caption {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .carousel-indicators button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin: 0 6px;
+        }
+
+        /* Category Section */
+        .category-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 0.5rem;
+        }
+
+        .dropdown-item {
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+            color: var(--primary-color);
         }
     </style>
 </head>
