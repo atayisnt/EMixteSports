@@ -1,21 +1,29 @@
-@extends('admin.layouts.layout')
-
-@section('title', 'Nouvelle Catégorie')
+@extends('admin.layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="mb-0">Nouvelle Catégorie</h4>
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Nouvelle catégorie</h6>
                 </div>
-                <div class="card-body">
-                    <form action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data">
+                <div class="card-body px-4 pt-0 pb-2">
+                    @if($errors->any())
+                        <div class="alert alert-danger mt-3">
+                            <ul class="mb-0">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    
+                    <form action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data" class="mt-4">
                         @csrf
                         
-                        <div class="mb-3">
-                            <label for="nom" class="form-label">Nom de la catégorie</label>
+                        <div class="form-group">
+                            <label for="nom" class="form-control-label">Nom de la catégorie</label>
                             <input type="text" 
                                    class="form-control @error('nom') is-invalid @enderror" 
                                    id="nom" 
@@ -27,8 +35,8 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label for="img_Categorie" class="form-label">Image de la catégorie</label>
+                        <div class="form-group mt-3">
+                            <label for="img_Categorie" class="form-control-label">Image de la catégorie</label>
                             <input type="file" 
                                    class="form-control @error('img_Categorie') is-invalid @enderror" 
                                    id="img_Categorie" 
@@ -43,12 +51,12 @@
                             </small>
                         </div>
 
-                        <div class="d-flex justify-content-between">
-                            <a href="{{ route('admin.categories.index') }}" class="btn btn-secondary">
-                                <i class="bi bi-arrow-left"></i> Retour
+                        <div class="d-flex justify-content-end mt-4">
+                            <a href="{{ route('admin.categories.index') }}" class="btn btn-light me-2">
+                                <i class="fas fa-arrow-left"></i> Retour
                             </a>
                             <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-check-lg"></i> Créer la catégorie
+                                <i class="fas fa-check"></i> Créer la catégorie
                             </button>
                         </div>
                     </form>

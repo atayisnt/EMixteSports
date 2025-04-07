@@ -1,22 +1,30 @@
-@extends('admin.layouts.layout')
-
-@section('title', 'Modifier la Catégorie')
+@extends('admin.layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="mb-0">Modifier la Catégorie</h4>
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Modifier la catégorie</h6>
                 </div>
-                <div class="card-body">
-                    <form action="{{ route('admin.categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
+                <div class="card-body px-4 pt-0 pb-2">
+                    @if($errors->any())
+                        <div class="alert alert-danger mt-3">
+                            <ul class="mb-0">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    
+                    <form action="{{ route('admin.categories.update', $category->id) }}" method="POST" enctype="multipart/form-data" class="mt-4">
                         @csrf
                         @method('PUT')
                         
-                        <div class="mb-3">
-                            <label for="nom" class="form-label">Nom de la catégorie</label>
+                        <div class="form-group">
+                            <label for="nom" class="form-control-label">Nom de la catégorie</label>
                             <input type="text" 
                                    class="form-control @error('nom') is-invalid @enderror" 
                                    id="nom" 
@@ -28,13 +36,14 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label for="img_Categorie" class="form-label">Image actuelle</label>
+                        <div class="form-group mt-3">
+                            <label for="img_Categorie" class="form-control-label">Image actuelle</label>
                             <div class="mb-2">
                                 <img src="{{ asset('images/categories/' . $category->img_Categorie) }}" 
                                      alt="{{ $category->nom }}" 
                                      class="img-thumbnail"
-                                     style="max-width: 200px;">
+                                     style="max-height: 150px;">
+                                <p class="text-xs text-secondary mb-0">Image actuelle</p>
                             </div>
                             <input type="file" 
                                    class="form-control @error('img_Categorie') is-invalid @enderror" 
@@ -49,12 +58,12 @@
                             </small>
                         </div>
 
-                        <div class="d-flex justify-content-between">
-                            <a href="{{ route('admin.categories.index') }}" class="btn btn-secondary">
-                                <i class="bi bi-arrow-left"></i> Retour
+                        <div class="d-flex justify-content-end mt-4">
+                            <a href="{{ route('admin.categories.index') }}" class="btn btn-light me-2">
+                                <i class="fas fa-arrow-left"></i> Retour
                             </a>
                             <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-check-lg"></i> Mettre à jour
+                                <i class="fas fa-check"></i> Mettre à jour
                             </button>
                         </div>
                     </form>

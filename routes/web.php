@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategorieController;
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProduitController as AdminProduitController;
 use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -20,9 +20,9 @@ Route::get('/products', [ProductController::class, 'all'])->name('products.all')
 Route::prefix('admin')
     ->middleware(['auth', AdminMiddleware::class])
     ->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
-        Route::resource('categories', CategorieController::class);
-        Route::resource('produits', AdminProduitController::class);
+        Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+        Route::resource('categories', CategorieController::class)->names('admin.categories');
+        Route::resource('produits', AdminProduitController::class)->names('admin.products');
     });
 
 // Authentication Routes
