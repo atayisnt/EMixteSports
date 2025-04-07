@@ -53,7 +53,7 @@ class ProduitController extends Controller
             'id_Categorie' => $request->id_Categorie
         ]);
 
-        return redirect()->route('admin.produits.index')
+        return redirect()->route('admin.products.index')
             ->with('success', 'Produit créé avec succès.');
     }
 
@@ -102,7 +102,7 @@ class ProduitController extends Controller
             'id_Categorie' => $request->id_Categorie
         ]);
 
-        return redirect()->route('admin.produits.index')
+        return redirect()->route('admin.products.index')
             ->with('success', 'Produit mis à jour avec succès.');
     }
 
@@ -112,7 +112,7 @@ class ProduitController extends Controller
     public function destroy(Produit $produit)
     {
         $produit->delete();
-        return redirect()->route('admin.produits.index')
+        return redirect()->route('admin.products.index')
             ->with('success', 'Produit supprimé avec succès.');
     }
 }
